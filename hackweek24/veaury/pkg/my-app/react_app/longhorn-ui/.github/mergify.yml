@@ -1,0 +1,33 @@
+pull_request_rules:
+- name: Automatically merge PRs
+  conditions:
+  - check-success="Build and push image"
+  - "#approved-reviews-by>=2"
+  - approved-reviews-by=@longhorn/maintainer
+  - approved-reviews-by=@longhorn/ui
+  actions:
+    merge:
+      method: rebase
+      
+- name: Automatically merge Renovate PRs
+  conditions:
+  - check-success="Build and push image"
+  - author = renovate[bot]
+  actions:
+    merge:
+      method: rebase
+
+- name: Automatically approve Renovate PRs
+  conditions:
+  - check-success="Build and push image"
+  - author = renovate[bot]
+  actions:
+    review:
+      type: APPROVE
+
+- name: Ask to resolve conflict
+  conditions:
+  - conflict
+  actions:
+    comment:
+      message: This pull request is now in conflict. Could you fix it @{{author}}? 🙏
