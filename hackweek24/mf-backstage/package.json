@@ -6,7 +6,9 @@
     "node": ">=20"
   },
   "dependencies": {
-    "@rancher/shell": "^3.0.0"
+    "@rancher/shell": "^3.0.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   },
   "resolutions": {
     "@types/node": "~20.10.0",
